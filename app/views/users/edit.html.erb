@@ -1,0 +1,31 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <% if @user.errors.any? %>
+      <h2>error</h2>
+        <% @user.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+      <%= form_with model:@user, local:true do |f| %>
+      <div class="form-group">
+        <label for="inputName">Name</label>
+        <div><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %></div>
+      </div>
+      <div class="form-group">
+        <label for="inputImage">Image</label>
+        <div><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></div>
+      </div>
+      <div class="form-group">  
+        <label for="InputIntroduction">Introduction</label>
+        <div><%= f.text_field :introduction, autofocus: true, id:"inputName", placeholder:"説明" %></div>
+      </div>
+  
+        <%= f.submit "Update User", class: "btn btn-secondary" %>
+      <% end %>
+  
+    </div>
+  </div>
+</div>
